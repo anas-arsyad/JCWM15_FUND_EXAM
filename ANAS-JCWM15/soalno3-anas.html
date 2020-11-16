@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        th,td,tr,table{
+            border: 1px black solid;
+            border-collapse: collapse;
+        }
+        td,th{
+            padding: 10px;
+        }
+        
+    </style>
+</head>
+<body>
+    <h1>FORM USER</h1>
+    <input type="text" placeholder="username">
+    <input type="email" placeholder="email">
+    <label>ROLE</label>
+    <select id="role">
+        <option>user</option>
+        <option>admin</option>
+    </select><br><br>
+    <button onclick="btnadduser()">ADD USER</button>
+    <br><br>
+    <h1>USER DATA</h1>
+    <table>
+        <thead>
+            <th>No</th>
+            <th>Username</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Action</th>
+        </thead>
+        <tbody></tbody>
+    </table>
+</body>
+<script>
+    let user=[
+        {
+            id:1,
+            username:"alee",
+            email:"alee@gmail.com",
+            role:"admin",
+        },
+        {
+            id:2,
+            username:"jennie",
+            email:"jenniebp@gmail.com",
+            role:"user",
+        },
+        {
+            id:3,
+            username:"elsa",
+            email:"elsa@disney.com",
+            role:"user",
+        }
+    ]
+
+    class Users{
+        constructor(id,username,email,role){
+            this.id=id
+            this.username=username
+            this.email=email
+            this.role=role
+        }
+    }
+
+    function showUser(index){
+        let body=document.getElementsByTagName("tbody")[0]
+        let tr=""
+        for(let i=0;i<user.length;i++){
+            if(index==i){
+                tr+=`
+                <tr>
+                    <td>${i+1}</td>
+                    <td><input id="editnama" type="text" value="${user[i].username}"></td>
+                    <td><input id="editemail" type="email" value="${user[i].email}"></td>
+                    <td>
+                        <select id="editrole" value="${user[i].role}">
+                            <option>user</option>
+                            <option>admin</option>
+                        </select>
+                    </td>
+                    <td> 
+                        <button onclick="buttonsave(${i})">SAVE</button>
+                        <button onclick="buttoncancel()">CANCEL</button>
+                    </td>
+                </tr>
+            `
+            } else{
+            tr+=`
+                <tr>
+                    <td>${i+1}</td>
+                    <td>${user[i].username}</td>
+                    <td>${user[i].email}</td>
+                    <td>${user[i].role}</td>
+                    <td> 
+                        <button onclick="buttondelete(${i})">DELETE</button>
+                        <button onclick="buttonedit(${i})">EDIT</button>
+                    </td>
+                </tr>
+            `}
+        }
+        body.innerHTML=tr
+    }
+
+    let buttondelete=(index)=>{
+        user.splice(index,1)
+        showUser()
+        
+    }
+
+    function btnadduser(){
+        let inptusername=document.getElementsByTagName("input")[0].value
+        let inptemail=document.getElementsByTagName("input")[1].value
+        let select=document.getElementById("role").value
+        let body=document.getElementsByTagName("tbody")[0]
+
+        console.log(select)
+        let tr=""
+        if(inptusername==""||inptemail==""){
+            alert("MASUKAN INPUTAN")
+        }else{
+            user.push(new Users(user.length+1,inptusername,inptemail,select))
+        }
+        showUser()
+    }
+
+    let buttonedit=(index)=>{
+        showUser(index)
+    }
+
+    function buttoncancel(){
+        showUser()
+    }
+    function buttonsave(index){
+        let inptusername=document.getElementById("editnama").value
+        let inptemail=document.getElementById("editemail").value
+        let select=document.getElementById("editrole").value
+        console.log
+
+        user[index]=new Users(index+1,inptusername,inptemail,select)
+        showUser()
+    }
+    showUser()
+</script>
+</html>

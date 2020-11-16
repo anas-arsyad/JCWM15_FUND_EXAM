@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>PATTERN</h1>
+    <input type="number" placeholder="masukan angka"><br><br>
+    <button onclick="buttonGanjil()">GANJIL</button>
+    <button onclick="buttonHuruf()">HURUF</button>
+    <br>
+    <h2>RESULT :</h2>
+    <h3></h3>
+</body>
+<script>
+    function buttonGanjil(){
+        let input=document.getElementsByTagName("input")[0].value
+        let output=document.getElementsByTagName("h3")[0]
+        let pattern=""
+        console.log("diklik")
+        if(input>4){
+            alert("MAKSIMAL 4")
+        }else if(input<0){
+            alert("TIDAK BOLEH NEGATIF")
+        }else{
+        let k=0
+        for(let i=0;i<=input;i++){
+            
+            for(let j=0;j<i;j++){
+                
+                pattern+=2*k+1+"&nbsp&nbsp"
+                k++
+
+            }
+            pattern+='<br>'
+        }
+        output.innerHTML=pattern
+    }
+    }
+
+    function buttonHuruf(){
+        let input=document.getElementsByTagName("input")[0].value
+        let output=document.getElementsByTagName("h3")[0]
+        let pattern=""
+        console.log("diklik")
+        if(input>4){
+            alert("MAKSIMAL 4")
+        }else if(input<0){
+            alert("TIDAK BOLEH NEGATIF")
+        }else{
+        let k=0
+        for(let i=0;i<=input;i++){
+            
+            for(let j=0;j<i;j++){
+                
+                pattern+=String.fromCharCode(66+k)+"&nbsp&nbsp"
+                k+=2
+
+            }
+            
+            pattern+='<br>'
+        }
+        output.innerHTML=pattern
+    }
+    }
+</script>
+</html>

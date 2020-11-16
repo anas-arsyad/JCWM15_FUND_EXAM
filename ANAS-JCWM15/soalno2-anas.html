@@ -1,0 +1,140 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <h1>DERET FIBONANCI</h1>
+    <label>Masukkan Angka :</label>
+    <input type="number" placeholder="masukkan angka"><br><br>
+    <button onclick="buttonShow()">SHOW</button>
+    <button onclick="buttonGanjil()">GANJIL</button>
+    <button onclick="buttonGenap()">GENAP</button>
+    <h2>RESULT :</h2>
+    <h3></h3>
+</body>
+<script>
+    let buttonShow = () => {
+
+        let input = document.getElementsByTagName("input")[0].value
+        let output = document.getElementsByTagName("h3")[0]
+
+        if (input < 0) {
+            alert("ANGKA TIDAK BOLEH NEGATIF")
+        } else if (input == "") {
+            alert("MASUKAN INPUTAN")
+        } else {
+
+            let awal = 0
+            let saatini = 1
+            pattern = ""
+            let arr = []
+            arr.push(awal, saatini)
+            while (true) {
+                let temp = saatini
+                saatini = temp + awal
+                awal = temp
+                pattern = saatini
+
+                if (saatini >= input) {
+                    break
+                }
+                arr.push(pattern)
+            }
+
+            output.innerHTML = arr
+        }
+    }
+
+    let buttonGanjil = () => {
+        let input = document.getElementsByTagName("input")[0].value
+        let output = document.getElementsByTagName("h3")[0]
+
+        if (input < 0) {
+            alert("ANGKA TIDAK BOLEH NEGATIF")
+        } else if (input == "") {
+            alert("MASUKAN INPUTAN")
+        } else {
+
+            let awal = 0
+            let saatini = 1
+            pattern = ""
+            let arr = []
+            arr.push(awal, saatini)
+            while (true) {
+                let temp = saatini
+                saatini = temp + awal
+                awal = temp
+                pattern = saatini
+
+                if (saatini >= input) {
+                    break
+                }
+                arr.push(pattern)
+            }
+            let ganjil=[]
+            for(let i=0;i<arr.length;i++){
+                if(arr[i]%2!==0){
+                    ganjil.push(arr[i])
+                }
+            }
+            let jumlah=0
+            for(let i=0;i<ganjil.length;i++){
+                jumlah+=ganjil[i]
+            }
+            let joinganjil=ganjil.join("+")
+
+            console.log(jumlah)
+            output.innerHTML = `${joinganjil}=${jumlah}`
+        }
+    }
+
+    let buttonGenap=()=>{
+        let input = document.getElementsByTagName("input")[0].value
+        let output = document.getElementsByTagName("h3")[0]
+
+        if (input < 0) {
+            alert("ANGKA TIDAK BOLEH NEGATIF")
+        } else if (input == "") {
+            alert("MASUKAN INPUTAN")
+        } else {
+
+            let awal = 0
+            let saatini = 1
+            pattern = ""
+            let arr = []
+            arr.push(awal, saatini)
+            while (true) {
+                let temp = saatini
+                saatini = temp + awal
+                awal = temp
+                pattern = saatini
+
+                if (saatini >= input) {
+                    break
+                }
+                arr.push(pattern)
+            }
+            let genap=[]
+            for(let i=0;i<arr.length;i++){
+                if(arr[i]%2==0){
+                    genap.push(arr[i])
+                }
+            }
+            let jumlah=0
+            for(let i=0;i<genap.length;i++){
+                jumlah+=genap[i]
+            }
+            let joingenap=genap.join("+")
+
+            console.log(jumlah)
+            output.innerHTML = `${joingenap} = ${jumlah}`
+        }
+    }
+</script>
+
+</html>
